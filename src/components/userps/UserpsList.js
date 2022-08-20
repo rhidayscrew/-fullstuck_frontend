@@ -5,7 +5,7 @@ import ReactPaginate from "react-paginate";
 import { useNavigate  } from 'react-router-dom';
 
 const UserpsList = () => {
- const [name, setName] = useState('');
+  const [name, setName] = useState('');
   const [token, setToken] = useState('');
   const [expire, setExpire] = useState('');
 
@@ -18,6 +18,26 @@ const UserpsList = () => {
   const [query, setQuery] = useState("");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate ();
+
+  //const [users, setUsers] = useState([]);
+  const [order, setOrder] = useState("ASC");
+  const sorting = (col) => {
+    if (order === "ASC") {
+      const sorted = [...users].sort((a,b) =>
+       a[col].toLowerCase() > b[col].toLowerCase() ? 1 : -1
+      );
+      setUsers(sorted);
+      setOrder("DSC");
+    }
+    if (order === "DSC") {
+      const sorted = [...users].sort((a,b) =>
+       a[col].toLowerCase() < b[col].toLowerCase() ? 1 : -1
+      );
+      setUsers(sorted);
+      setOrder("ASC");
+    }
+  };
+
 
   useEffect(() => {
       refreshToken();
@@ -118,10 +138,10 @@ const UserpsList = () => {
           <table className="table is-striped is-bordered is-fullwidth mt-2">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Gender</th>
+                <th onClick={()=> sorting("id")}>ID</th>
+                <th onClick={()=> sorting("name")}>Name</th>
+                <th onClick={()=> sorting("email")}>Email</th>
+                <th onClick={()=> sorting("gender")}>Gender</th>
               </tr>
             </thead>
             <tbody>

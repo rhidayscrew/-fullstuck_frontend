@@ -11,6 +11,26 @@ const Dashboard = () => {
     const [users, setUsers] = useState([]);
     const navigate = useNavigate ();
 
+    //const [users, setUsers] = useState([]);
+  const [order, setOrder] = useState("ASC");
+  const sorting = (col) => {
+    if (order === "ASC") {
+      const sorted = [...users].sort((a,b) =>
+       a[col].toLowerCase() > b[col].toLowerCase() ? 1 : -1
+      );
+      setUsers(sorted);
+      setOrder("DSC");
+    }
+    if (order === "DSC") {
+      const sorted = [...users].sort((a,b) =>
+       a[col].toLowerCase() < b[col].toLowerCase() ? 1 : -1
+      );
+      setUsers(sorted);
+      setOrder("ASC");
+    }
+  };
+
+
     useEffect(() => {
         refreshToken();
         getUsers();
@@ -63,9 +83,10 @@ const Dashboard = () => {
             <table className="table is-striped is-fullwidth">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Name</th>
-                        <th>Email</th>
+
+                        <th onClick={()=> sorting("id")}>No</th>
+                        <th onClick={()=> sorting("name")}>Name</th>
+                        <th onClick={()=> sorting("email")}>Email</th>
                     </tr>
                 </thead>
                 <tbody>
