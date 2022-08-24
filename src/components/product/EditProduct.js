@@ -11,7 +11,7 @@ const EditProduct = () => {
   const [stok, setStok] = useState("");
   const [file, setFile] = useState("");
   const [preview, setPreview] = useState("");
-  const [msg, setMsg] = useState('');
+  const [message, setMsg] = useState('');
   const { id } = useParams();
   const [name, setName] = useState('');
   const [token, setToken] = useState('');
@@ -99,7 +99,7 @@ const EditProduct = () => {
       navigate("/productlist");
     } catch (error) {
        if (error.response) {
-                setMsg(error.response.data.msg);
+                setMsg(error.response.data.message);
             }
     }
   };
@@ -109,7 +109,7 @@ const EditProduct = () => {
       <div className="column is-half">
          <h1>Welcome Back: {name}</h1>
         <form onSubmit={updateProduct}>
-          <p className="has-text-centered">{msg}</p>
+          <p className="has-text-centered">{message}</p>
           <div className="field">
             <label className="label">Nama barang</label>
             <div className="control">

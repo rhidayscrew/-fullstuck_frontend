@@ -7,7 +7,7 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confPassword, setConfPassword] = useState('');
-    const [msg, setMsg] = useState('');
+    const [message, setMsg] = useState('');
     const navigate = useNavigate();
 
     const Register = async (e) => {
@@ -19,10 +19,11 @@ const Register = () => {
                 password: password,
                 confPassword: confPassword
             });
+
             navigate("/");
         } catch (error) {
             if (error.response) {
-                setMsg(error.response.data.msg);
+                setMsg(error.response.data.message);
             }
         }
     }
@@ -34,7 +35,7 @@ const Register = () => {
                     <div className="columns is-centered">
                         <div className="column is-4-desktop">
                             <form onSubmit={Register} className="box">
-                                <p className="has-text-centered">{msg}</p>
+                                <p className="has-text-centered">{message}</p>
                                 <div className="field mt-5">
                                     <label className="label">Name</label>
                                     <div className="controls">

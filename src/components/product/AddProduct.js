@@ -15,7 +15,7 @@ const AddProduct = () => {
   //const [makeid, setMakeid] = useState("");
   const [file, setFile] = useState("");
   const [preview, setPreview] = useState("");
-  const [msg, setMsg] = useState('');
+  const [message, setMsg] = useState('');
   const navigate = useNavigate();
 
   const loadImage = (e) => {
@@ -84,7 +84,7 @@ useEffect(() => {
       navigate("/productlist");
     } catch (error){
             if (error.response) {
-                setMsg(error.response.data.msg);
+                setMsg(error.response.data.message);
             }
         }
 
@@ -97,7 +97,7 @@ useEffect(() => {
         <h1>Welcome Back: {name}</h1>
       <div className="column is-half">
         <form onSubmit={saveProduct}>
-          <p className="has-text-centered">{msg}</p>
+          <p className="has-text-centered">{message}</p>
           <div className="field">
             <label className="label">Nama barang</label>
             <div className="control">
@@ -107,6 +107,7 @@ useEffect(() => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Nama Barang"
+
               />
             </div>
           </div>
@@ -120,6 +121,7 @@ useEffect(() => {
                 value={harbel}
                 onChange={(e) => setHarbel(e.target.value)}
                 placeholder="Harga beli"
+
               />
             </div>
           </div>
@@ -133,6 +135,7 @@ useEffect(() => {
                 value={harjul}
                 onChange={(e) => setHarjul(e.target.value)}
                 placeholder="Harga Jual"
+
               />
             </div>
           </div>
@@ -146,6 +149,7 @@ useEffect(() => {
                 value={stok}
                 onChange={(e) => setStok(e.target.value)}
                 placeholder="Harga Jual"
+
               />
             </div>
           </div>
